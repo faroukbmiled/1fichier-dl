@@ -1,5 +1,9 @@
 **Note:**
-This a fork of the original project as it's no longer maintained.
+This a fork of the original project
+Maintained for now
+Fixed it to work with Python >= 3.10.x
+Changed Proxy provider to proxyscrape since Proxyscan is dead
+You can edit proxy api from settings.json
 
 ## Usage
 - Make sure Python3 is installed properly, do `pip install -r requirements.txt` and then you can use `download.sh` to launch the program
@@ -39,6 +43,6 @@ Change according to your configuration
 
 ## Credits
 * All icons, including the app icon, were provided by [Feather](https://feathericons.com/).
-* Proxies provided by [Proxyscan](https://www.proxyscan.io/).
+* Proxies provided by [Proxyscan](https://www./).
 * paulo27ms for proxy stuff
 * oureveryday for aria2 stuff

@@ -1,19 +1,38 @@
+from msilib.schema import File
 import requests
 import math
 import os
 import time
 import lxml.html
+import json
+
+
+
+Defaultapi = {"PorxyAPI": "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"}
+Path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+if not os.path.exists(os.path.join(Path, 'settings.json')):
+  with open(os.path.join(Path, 'settings.json'), 'w') as f:
+    json.dump(Defaultapi, f, indent=4)
+try:
+    with open(os.path.join(Path, 'settazeings.json')) as f:
+        settings = json.load(f)
+except:
+    settings = Defaultapi
+
 
 FIRST_RUN = True
-PROXY_TXT_API = 'https://www.proxyscan.io/api/proxy?type=https&format=txt&limit=20'
+PROXY_TXT_API = settings["PorxyAPI"]
 PLATFORM = os.name
+
+
+
 
 def get_proxies(settings: str) -> list:
     '''
     Get proxies (str) from API.
     '''
     global FIRST_RUN
-    
+
     if FIRST_RUN:
         FIRST_RUN = False
         return [None]
@@ -22,6 +41,7 @@ def get_proxies(settings: str) -> list:
     proxies = []
     for p in r_proxies:
         proxies.append({'https': f'{p}'} if PLATFORM == 'nt' else {'https': f'http://{p}'})
+    print(proxies)
     return proxies
 
 def convert_size(size_bytes: int) -> str:
@@ -54,7 +74,7 @@ def download_speed(bytes_read: int, start_time: float) -> str:
 
 def get_link_info(url: str) -> list:
     '''
-    Get file name and size. 
+    Get file name and size.
     '''
     try:
         r = requests.get(url)
@@ -84,4 +104,4 @@ def is_valid_link(url: str) -> bool:
         'dl4free.com/'
     ]
 
-    return any([x in url.lower() for x in domains]) 
+    return any([x in url.lower() for x in domains])

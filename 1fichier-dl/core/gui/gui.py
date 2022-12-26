@@ -83,7 +83,7 @@ class GuiBehavior:
         except FileNotFoundError:
             self.cached_downloads = []
             create_file('app/cache')
-        
+
         '''
         Load settings.
         Create file in case it doesn't exist.
@@ -97,7 +97,7 @@ class GuiBehavior:
         except FileNotFoundError:
             self.settings = None
             create_file('app/settings')
-                
+
     def resume_download(self):
         '''
         Resume selected downloads.
@@ -141,9 +141,9 @@ class GuiBehavior:
 
         worker.signals.download_signal.connect(self.download_receive_signal)
         worker.signals.alert_signal.connect(alert)
-        
+
         self.filter_thread.start(worker)
-    
+
     def download_receive_signal(self, row, link, append_row = True, dl_name = '', progress = 0):
         '''
         Append download to row and start download.
@@ -172,14 +172,14 @@ class GuiBehavior:
             if not PyQt5.sip.isdeleted(data[2]):
                 for i in range(len(items)):
                     if items[i] and isinstance(items[i], str): data[i].setText(items[i])
-                    if items[i] and not isinstance(items[i], str): data[i].setValue(items[i])
-    
+                    if items[i] and not isinstance(items[i], str): data[i].setValue(int(items[i]))
+
     def set_dl_directory(self):
         file_dialog = QFileDialog(self.gui.settings)
         file_dialog.setFileMode(QFileDialog.Directory)
         file_dialog.exec_()
         self.gui.dl_directory_input.setText(file_dialog.selectedFiles()[0])
-    
+
     def change_theme(self, theme = None):
         '''
         Change app palette (theme).
@@ -205,7 +205,7 @@ class GuiBehavior:
             pickle.dump(settings, f)
             self.settings = settings
         self.gui.settings.hide()
-        
+
     def select_settings(self):
         '''
         Select settings page.
@@ -227,7 +227,7 @@ class GuiBehavior:
         with open(absp('app/cache'), 'wb') as f:
             if active_downloads:
                 pickle.dump(active_downloads, f)
-        
+
         os._exit(1)
 
 class Gui:
@@ -235,9 +235,9 @@ class Gui:
         # Init GuiBehavior()
         self.actions = GuiBehavior(self)
         self.app_name = '1Fichier Downloader v0.2.0-fork'
-        
+
         # Create App
-        app = QApplication(sys.argv) 
+        app = QApplication(sys.argv)
         app.setWindowIcon(QIcon(absp('ico.ico')))
         app.setStyle('Fusion')
         app.aboutToQuit.connect(self.actions.handle_exit)
@@ -254,7 +254,7 @@ class Gui:
             self.actions.change_theme(self.actions.settings[1])
 
         sys.exit(app.exec_())
-    
+
     def main_win(self):
         # Define Main Window
         self.main = QMainWindow()
@@ -308,12 +308,12 @@ class Gui:
 
         self.main.setWindowFlags(self.main.windowFlags()
                                 & Qt.CustomizeWindowHint)
-                                
+
         grid.addLayout(hbox, 2, 0, 1, 2)
         widget.setLayout(grid)
         self.main.resize(670, 415)
         self.main.show()
-    
+
     def add_links_win(self):
         # Define Add Links Win
         self.add_links = QMainWindow(self.main)
@@ -366,7 +366,7 @@ class Gui:
         Child widget
         Behavior Settings
         '''
-        
+
         behavior_settings = QWidget()
         self.stacked_settings.addWidget(behavior_settings)
 
@@ -409,7 +409,7 @@ class Gui:
         Child widget
         Connection Settings
         '''
-        
+
         connection_settings = QWidget()
         self.stacked_settings.addWidget(connection_settings)
 
