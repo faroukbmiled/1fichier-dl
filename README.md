@@ -1,9 +1,9 @@
 **Note:**
-This a fork of the original project
-Maintained for now
-Fixed it to work with Python >= 3.10.x
-Changed Proxy provider to proxyscrape since Proxyscan is dead
-You can edit proxy api from settings.json
+- This a fork of the original project 
+- Maintained for now
+- Fixed it to work with Python >= 3.10.x
+- Changed Proxy provider to proxyscrape since Proxyscan is dead
+- You can edit proxy api from settings.json
 
 ## Usage
 - Make sure Python3 is installed properly, do `pip install -r requirements.txt` and then you can use `download.sh` to launch the program
