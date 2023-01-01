@@ -48,7 +48,7 @@ Change according to your configuration
 * oureveryday for aria2 stuff
 
 ## Notes
-if gui not working on LXDE or anny other desktop environments, try these commands:
+* if gui not working on LXDE or any other desktop environments, try these commands:
 - pip install pyqt6
 - sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
 - sudo apt install libxcb-xinerama0 
