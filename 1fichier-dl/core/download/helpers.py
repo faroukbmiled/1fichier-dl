@@ -1,4 +1,3 @@
-from msilib.schema import File
 import requests
 import math
 import os
