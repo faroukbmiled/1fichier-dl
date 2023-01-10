@@ -46,3 +46,9 @@ Change according to your configuration
 * Proxies provided by [Proxyscan](https://www./).
 * paulo27ms for proxy stuff
 * oureveryday for aria2 stuff
+
+## Notes
+if gui not working on LXDE or any other desktop environments, try these commands:
+- pip install pyqt6
+- sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+- sudo apt install libxcb-xinerama0 
