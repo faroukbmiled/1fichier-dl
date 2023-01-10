@@ -14,14 +14,15 @@ if not os.path.exists(os.path.join(Path, 'settings.json')):
   with open(os.path.join(Path, 'settings.json'), 'w') as f:
     json.dump(Defaultapi, f, indent=4)
 try:
-    with open(os.path.join(Path, 'settazeings.json')) as f:
-        settings = json.load(f)
+    with open(os.path.join(Path, 'settings.json')) as f:
+        load = json.load(f)
+        settings = load["PorxyAPI"]
 except:
     settings = Defaultapi
 
 
 FIRST_RUN = True
-PROXY_TXT_API = settings["PorxyAPI"]
+PROXY_TXT_API = settings
 PLATFORM = os.name
 
 
