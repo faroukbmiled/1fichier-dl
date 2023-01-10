@@ -17,7 +17,7 @@ try:
         load = json.load(f)
         settings = load["PorxyAPI"]
 except:
-    settings = Defaultapi
+    settings = Defaultapi['PorxyAPI']
 
 
 FIRST_RUN = True
